@@ -48,12 +48,12 @@
 
 
         Title.defaultProps = {
-            name : '기본이름'
+            name : '(기본이름)'
         };
 
             ReactDOM.createRoot(document.getElementById('root')).render(
                 [
-                    <Title name = {name1}/>,
+                    <Title name = {name1+"님 "+name2}/>,
                     <Title name = {name2}/>,
                     <Title name = "이순신"/>,
                     <Title/>
