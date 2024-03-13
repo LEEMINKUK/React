@@ -45,7 +45,7 @@
         // );
 
         /* 2-3. &&연산자를 이용한 조건부 엘리먼트 생성하기(조건이 맞을 때만 엘리먼트가 보이게 할 경우) */
-        const element = answer === 1 && <h1>앞으로 점점 더 재미있어 질 거예요</h1>
+        const element = (answer === 1) && <h1>앞으로 점점 더 재미있어 질 거예요</h1>
         
         ReactDOM.createRoot(document.getElementById('root')).render(element);
     </script>
