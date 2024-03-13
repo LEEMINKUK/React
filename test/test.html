@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="background-color: plum;">
+    
+    <header style="
+        font-size: xx-large;
+        height: 80px;
+        background-color: black;
+        color: white; 
+        text-align: center; 
+        padding-top: 30px; 
+        width: 100%; 
+        margin-top: -10px;
+        margin-left: -10px;
+        padding-right: 20px;
+        "
+    >오늘의 할일!<span id="todayDate"></span>
+    </header>
+    <script>
+
+            function updateDate() {
+            let today = new Date();
+            let year = today.getFullYear();
+            let month = today.getMonth() + 1;
+            let day = today.getDate();
+            let dateString = " "+year + ". " + month + ". " + day + ".";
+            document.getElementById("todayDate").innerText = dateString;
+        }
+
+        
+        window.onload = function() {
+            updateDate();
+        };
+    </script>
+    <h3 style="text-align: center;font-size: x-large;">ToDo-List</h3>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const {useState}=React;
+
+        function App(){
+
+            const [members, setMembers]= useState([
+                {id:1 , name:'홍길동'}
+            ]);
+
+            const [inputText, setInputText]= useState('');
+
+            const [nextId, setNextId] = useState(2);
+
+            const onChangeHandler= e=> setInputText(e.target.value);
+
+            const onClickHandler = ()=>{
+                const changedMembers = members.concat({
+                    id: nextId,
+                    name: inputText
+                });
+                setNextId(nextId +1);
+                setMembers(changedMembers);
+                setInputText('');
+            }
+
+            const onRemove = id => {
+                const changedMembers = members.filter(member => member.id !== id);
+                setMembers(changedMembers);
+            }
+
+            const style = {
+                color : 'black',
+                border : '1px solid black',
+                width : '550px',
+                height : '550px',
+                backgroundColor : 'white',
+                margin : 'auto'
+            }
+            
+
+            const img={
+                backgroundImage: `url('https://as1.ftcdn.net/v2/jpg/02/51/95/54/1000_F_251955438_r74aDwLOs6RP1eiYVsJBrqwu8rZ3ZtHG.jpg')`,
+                backgroundSize: 'contain',
+                width: '20px',
+                height: '20px', 
+                backgroundPosition: 'center',
+                border: 'none',
+            }
+            
+            const memberList = members.map(member => {
+                const checkboxChange = () => {
+                const updateMembers = members.map( a => {
+                    if (a.id === member.id) {
+                        return { ...a, checked: !a.checked };
+                }
+                return a;
+                });
+                setMembers(updateMembers);
+            };
+
+            return (
+            <div>
+            <input key={member.id} type="checkbox" onChange={checkboxChange} />
+            {member.checked ? <s style={{color:'gray'}}>{member.name}</s> : member.name}
+            <button style={img} onClick={() => onRemove(member.id)} />
+            </div>
+            );
+            });
+            return(
+            <>
+                <div style={style}>
+                    <ul>{memberList}</ul>
+                    
+                    </div>
+                    <div style={{textAlign:'center'}}>
+                    <input style={{height:'20px'}} value ={inputText} onChange={onChangeHandler}/>
+                    <button style={{backgroundColor:'green',color:'white',width:'80px',height:'30px'}} onClick={onClickHandler}>추가하기</button>
+                    </div>
+                
+            </>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+
+    </script>
+    <footer style="
+    height: 80px;
+    background-color: black;
+    color: white; 
+    text-align: center; 
+    padding-top: 30px; 
+    bottom : 0; 
+    position:absolute; 
+    width: 100%;
+    margin-left: -10px;
+    padding-right: 10px;
+    "
+    > Copyright 2024. David Company all rights reserved.
+    </footer>
+</body>
+</html>
