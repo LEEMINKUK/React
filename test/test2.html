@@ -11,46 +11,105 @@
 <body>
     <div id="root"></div>
     <script type="text/babel">
+//  class EventComponent extends React.Component{
 
-        const [useState, useEffect]=React;
-        function LoginForm(){
+// state ={
+//     message : ''
+// };
 
-const [user, setUser]=useState({
-    username : '',
-    password : ''
-});
+// render(){
+//     return(
+//         <>
+//             <h1></h1>
+//             <input 
+//                 type="text"
+//                 name="message"
+//                 placeholder="텍스트를 입력해주세요"
+//                 onChange ={
+//                     (e)=>{
+//                         this.setState({
+//                             message: e.target.value
+//                         })
+//                     }
+//                 }
+//                 value={this.state.message} 
+//             />
+//         <button onClick={
+//             ()=>{
+//                 alert(`${this.state.message} 지워짐!`);
+//                 this.setState({
+//                     message:''
+//                 });
+//             }
+//         }>확인</button>
+//         </>
+//     );
+// }
+// }
 
-const onChangeHandeler=(e) =>{
-    setUser({
-        ...user,
-        [e.target.name] : e.target.value
-    });
-}
+// ReactDOM.createRoot(document.getElementById('root')).render(<EventComponent/>);
 
-useEffect(()=> //리턴 이후 일어나야 할 일이 생길때 사용 가능.
-{console.log('username update...')},
-[user.username]
-)
+// ---------------------------------------------------------------------------------------------------------
 
-useEffect(()=>
-console.log('password update...'),
-[user.password]
-)
+// const {useState}= React;
 
-return(
-    <>
-        <label>username : </label>
-        <input type="text" name="username" onChange={onChangeHandeler}/>
-        <br/>
-        <label>password : </label>
-        <input type="text" name="password" onChange={onChangeHandeler}/>
-        <h3>username : {user.username}</h3>
-        <h3>password : {user.password}</h3>
-    </>
-)
-}
+// function LoginComponent() {
 
-ReactDOM.createRoot(document.getElementById('root')).render(<LoginForm/>)
+//     const [username,setUsername]= useState('');
+
+//     const onChangeUsername = e => setUsername(e.target.value);
+//     const [stringValue, setStringvalue]= setState(prompt('문자열을 입력해 주세요.'))
+
+//     const onClickHandler = ()=>{
+//         alert(`username : ${username}`);
+//         setUsername('');
+
+//         useEffect(()=>{  // 리턴 이후 동작함
+//             return (
+//             <>
+//             <label>{username}</label>
+//             <br/>
+//             <input
+//                 type= "text"
+//                 name= "username"
+//                 placeholder="문자열을 입력해 주세요."
+//                 onChange ={onChangeUsername}
+//                 value={username}
+//             />
+//             <button onClick={onClickHandler}>확인</button>
+//             </>
+//             );
+//         })
+//     }
+//     return (
+//         <>
+//             {stringValue}
+//         </>
+//     );
+// }
+// ReactDOM.createRoot(document.getElementById('root')).render(<LoginComponent/>)
+// ---------------------------------------------------------------------------------------------------------
+    const [useState, useEffect] = React;
+
+    
+    function App(){
+        
+        const stringValue= prompt('문자열을 입력해 주세요.')
+    
+    // useEffect(()=>{
+
+    //     return(
+    //         null
+    //     )
+    // })
+        
+        
+        // return(
+        //     <>
+        //     </>
+        // )
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>)
     </script>
     
 </body>
