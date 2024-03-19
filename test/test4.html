@@ -34,7 +34,7 @@
                 axios.get('https://api.github.com/emojis')
                         .then(e =>{
                         switch(weather.main){
-                        case 'Clouds': setId('cloud');
+                        case 'Rain': setId(cloud);
                         break;
                         default : setId('');
                         }})
@@ -63,7 +63,7 @@
                             setCityName(json.name);
                             setWeather(json.weather[0]);
                             setWind(json.wind);
-                            setId(weather.main)
+                            
                         })
                         
                     })
@@ -77,7 +77,8 @@
                                     <h4>{`조회 도시 ${cityName}`}</h4>
                                     <h4>{`날씨 : ${weather.main} 날씨 설명 : ${weather.description}`}</h4>
                                     <h4>{`풍향 : ${wind.deg}도 풍속 : ${wind.speed}m/s`}</h4>
-                                    {imageUrl ? <img src={imageUrl}/> : <h1>텅 텅 텅~</h1>}
+                                    
+                                        {imageUrl ? <img src={imageUrl}/> : <h1>텅 텅 텅~</h1>}
                                 </>
                             )
                 }
