@@ -28,20 +28,20 @@
             
             
             
-
-            
-                function callAPI(){
+            function callAPI(){
                 axios.get('https://api.github.com/emojis')
-                        .then(e =>{
-                        switch(weather.main){
-                        case 'Rain': setId(cloud);
-                        break;
-                        default : setId('');
-                        }})
-                        .then(() => {
+                .then(response =>{
+                            switch(weather.main){
+                            case 'Clouds': setId('cloud_with_rain')
+                            break;
+                            case 'Rain' : setId('cloud')
+                            break;
+                            case 'Haze' : setId('haze')
+                            break;
+                            default : setId('');
+                            }
                             setImageUrl(response.data[id])
-                        })
-            }
+                        })}
 
             useEffect(
                 ()=>{
@@ -63,7 +63,6 @@
                             setCityName(json.name);
                             setWeather(json.weather[0]);
                             setWind(json.wind);
-                            
                         })
                         
                     })
@@ -77,8 +76,8 @@
                                     <h4>{`조회 도시 ${cityName}`}</h4>
                                     <h4>{`날씨 : ${weather.main} 날씨 설명 : ${weather.description}`}</h4>
                                     <h4>{`풍향 : ${wind.deg}도 풍속 : ${wind.speed}m/s`}</h4>
-                                    
-                                        {imageUrl ? <img src={imageUrl}/> : <h1>텅 텅 텅~</h1>}
+                                    {callAPI()}
+                                    <img src={imageUrl}/>
                                 </>
                             )
                 }
