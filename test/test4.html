@@ -32,12 +32,13 @@
                 axios.get('https://api.github.com/emojis')
                 .then(response =>{
                             switch(weather.main){
-                            case 'Clouds': setId('cloud_with_rain')
+                            case 'Clouds': setId('cloud')
                             break;
-                            case 'Rain' : setId('cloud')
+                            case 'Rain' : setId('cloud_with_rain')
                             break;
                             case 'Haze' : setId('haze')
                             break;
+                            case 'Clear': setId('dark_sunglasses')
                             default : setId('');
                             }
                             setImageUrl(response.data[id])
@@ -76,6 +77,7 @@
                                     <h4>{`조회 도시 ${cityName}`}</h4>
                                     <h4>{`날씨 : ${weather.main} 날씨 설명 : ${weather.description}`}</h4>
                                     <h4>{`풍향 : ${wind.deg}도 풍속 : ${wind.speed}m/s`}</h4>
+                                    <h1>{weather.icon}</h1>
                                     {callAPI()}
                                     <img src={imageUrl}/>
                                 </>
